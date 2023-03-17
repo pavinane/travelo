@@ -5,6 +5,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/HomeScreen';
 import Discover from './screens/Discover';
+import Detail from './screens/Detail';
+import Product from './screens/Product';
+import MainScreen from './screens/MainScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,13 +22,17 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   return (
     <TailwindProvider>
-      <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Discover" component={Discover} />
-      </Stack.Navigator>
-    </NavigationContainer>
-   </TailwindProvider>
+      <MainScreen/>
+      {/* <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="MainScreen" component={MainScreen} />
+          <Stack.Screen name="Discover" component={Discover} />
+          <Stack.Screen name="Detail" component={Detail} />
+          <Stack.Screen name="Product" component={Product} />
+        </Stack.Navigator>
+      </NavigationContainer> */}
+    </TailwindProvider>
   );
 }
 

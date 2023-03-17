@@ -22,21 +22,33 @@ const Discover = () => {
           <Text className="text-xl text-[#e285c6]">the beauty today</Text>
         </View>
         <View className="flex items-center w-20">
-          <Image className="w-16 h-16 object-cover" source={flight} />
+          <Image
+            className="w-16 h-16 object-cover rounded-full shadow-inner"
+            source={flight}
+          />
         </View>
       </View>
-      <View className="flex-row item-center bg-white mx-4 rounded-xl py-1 px-4 shadow-lg ">
+      <View className="flex-row item-center mx-4 rounded-xl py-1 px-4 shadow-inner ">
         <GooglePlacesAutocomplete
+          GooglePlacesDetailsQuery={{ fields: "geometry" }}
           placeholder="Search"
+          fetchDetails={true}
           onPress={(data, details = null) => {
             // 'details' is provided when fetchDetails = true
             console.log(data, details);
+            console.log(JSON.stringify(details?.geometry?.location));
           }}
           query={{
-            key: "YOUR API KEY",
+            key: "AIzaSyDWpuVw2apN-XgX3gmrzsHrZgr1AG4sCxQ", //AIzaSyBKnZr3iS2-uXciT5VhneqSvMktCIOit6A
             language: "en",
           }}
         />
+        
+      </View>
+      <View>
+      <Text onPress={() => navigation.navigate("Detail")}>
+          Details screen
+        </Text>
       </View>
     </SafeAreaView>
   );

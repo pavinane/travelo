@@ -40,14 +40,14 @@ const HomeScreen = () => {
         animation="fadeIn"
         easing="ease-in-out"
         source={Traveler}
-        className=" w-full h-full object-cover absolute -bottom-5 left-5"
+        className=" w-full h-full object-cover absolute  left-5"
         />
 
         
       {/* Go button */}
       <View className="w-24 h-24 rounded-full border border-l-2 border-r-2 border-t-4 border-[#f0416d] absolute bottom-24 items-center justify-center">
        <TouchableOpacity
-       onPress={() => navigation.navigate('Discover')}
+       onPress={() => navigation.navigate('MainScreen')}
        >
         <Animatable.View
         animation="pulse"
