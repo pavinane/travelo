@@ -1,39 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, Text,View } from 'react-native';
-import { TailwindProvider } from 'tailwindcss-react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './screens/HomeScreen';
-import Discover from './screens/Discover';
-import Detail from './screens/Detail';
-import Product from './screens/Product';
-import MainScreen from './screens/MainScreen';
+import React, { useEffect, useState } from "react";
+import { TailwindProvider } from "tailwindcss-react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import MainScreen from "./screens/MainScreen";
+import OnboardingScreen from "./screens/Onboarding";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
-// function HomeScreen() {
-//   return (
-//     <View style={{  alignItems: 'center', justifyContent: 'center' }}>
-//       <Text>Home Screen</Text>
-//     </View>
-//   );
-// }
-
 export default function App() {
+  const [firstScreen, setFirstScreen] = useState(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem("alreadyLanched").then((value) => {
+      if (value === null) {
+        AsyncStorage.setItem("alreadyLanched", "true");
+        setFirstScreen(true);
+      } else {
+        setFirstScreen(false);
+      }
+    });
+  }, []);
+
   return (
     <TailwindProvider>
-      <MainScreen/>
-      {/* <NavigationContainer>
+      <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="MainScreen" component={MainScreen} />
-          <Stack.Screen name="Discover" component={Discover} />
-          <Stack.Screen name="Detail" component={Detail} />
-          <Stack.Screen name="Product" component={Product} />
+          {!firstScreen && (
+            <Stack.Screen
+              options={{ headerShown: false }}
+              name="OnboardingScreen"
+              component={OnboardingScreen}
+            />
+          )}
+          <Stack.Screen  options={{ headerShown: false }} name="MainScreen" component={MainScreen} />
         </Stack.Navigator>
-      </NavigationContainer> */}
+      </NavigationContainer>
     </TailwindProvider>
   );
 }
-
-
