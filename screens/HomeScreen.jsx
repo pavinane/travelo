@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Traveler } from '../assets';
 import * as Animatable from 'react-native-animatable';
+
 const HomeScreen = () => {
 
   const navigation  = useNavigation();
